@@ -4,10 +4,6 @@ import { Session } from 'next-auth';
 
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
-function secondsSinceEpochToDate(secondsSinceEpoch: number) {
-  return new Date(secondsSinceEpoch * 1000);
-}
-
 export const SessionInfo: React.FC<{ session: Session }> = ({ session }) => {
   return (
     <Card>
@@ -16,11 +12,8 @@ export const SessionInfo: React.FC<{ session: Session }> = ({ session }) => {
       </CardHeader>
       <CardContent>
         <p>Session:</p>
-        <p className="truncate">
-          Issued At: {secondsSinceEpochToDate(session.user.iat).toLocaleString()}
-        </p>
-        <p className="truncate">
-          Expires At: {secondsSinceEpochToDate(session.user.exp).toLocaleString()}
+        <p>
+          This session is <strong>{session.is2FAVerified ? 'verified' : 'not verified'}</strong>.
         </p>
       </CardContent>
       <CardContent>
@@ -28,6 +21,9 @@ export const SessionInfo: React.FC<{ session: Session }> = ({ session }) => {
         <p className="truncate">ID: {session.user.id}</p>
         <p>
           Role: <strong>{session.user.role}</strong>
+        </p>
+        <p>
+          2FA Enabled: <strong>{session.user.is2FAEnabled ? 'TRUE' : 'FALSE'}</strong>
         </p>
       </CardContent>
     </Card>

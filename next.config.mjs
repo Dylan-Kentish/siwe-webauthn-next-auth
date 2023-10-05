@@ -4,6 +4,12 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
+  experimental: {
+    serverActions: true,
+    logging: {
+      level: 'verbose',
+    },
+  },
   reactStrictMode: true,
   swcMinify: true,
   i18n: {

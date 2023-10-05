@@ -32,7 +32,7 @@ export const useLogin = () => {
       throw new Error('Signature is empty');
     }
 
-    const response = await signIn('credentials', {
+    const response = await signIn('siwe', {
       message: JSON.stringify(message),
       redirect: true,
       signature,
